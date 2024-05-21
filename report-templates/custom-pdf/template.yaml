@@ -1,0 +1,8 @@
+name: Custom PDF Report
+format: PDF
+mode: HTML
+extension: pdf
+sections:
+ - alertcount
+ - instancecount
+ - alertdetails

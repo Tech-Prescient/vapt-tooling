@@ -1,0 +1,21 @@
+import os
+
+LOG_PREFIX = os.getenv("LOG_PREFIX", "[#########################] - ")
+
+TARGET_URL = os.getenv("TARGET_URL")
+SWAGGER_JSON_URL = os.getenv("SWAGGER_JSON_URL")
+
+ALERT_FILTERS = os.getenv("ALERT_FILTERS")
+AUTHENTICATION_SCRIPT = os.getenv("AUTHENTICATION_SCRIPT")
+CONTEXT_FILE = os.getenv("CONTEXT_FILE")
+SCAN_POLICY = os.getenv("SCAN_POLICY")
+SCRIPT_PARAMS_FILE = os.getenv("SCRIPT_PARAMS_FILE")
+SWAGGER_SCHEMA_FILE = os.getenv("SWAGGER_SCHEMA_FILE")
+URLS_FILE = os.getenv("URLS_FILE")
+
+LOGGED_OUT_INDICATOR_REGEX = os.getenv("LOGGED_OUT_INDICATOR_REGEX")
+
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
+
+REPORT_DIR = os.getenv("REPORT_DIR", "/reports/")

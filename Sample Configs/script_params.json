@@ -1,0 +1,5 @@
+{
+  "cognito_url": "<your-cognito-url>",
+  "cognito_user_pool_id": "<your-cognito-user-pool-id>",
+  "cognito_app_client_id": "<your-cognito-app_-client_-id>"
+}

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+    <context>
+        <name>Default Context</name>
+        <desc/>
+        <inscope>true</inscope>
+        <tech>
+            <include>Db.PostgreSQL</include>
+            <include>Language.C</include>
+            <include>Language.JSP/Servlet</include>
+            <include>Language.Java</include>
+            <include>Language.Java.Spring</include>
+            <include>Language.JavaScript</include>
+            <include>Language.PHP</include>
+            <include>Language.Python</include>
+            <include>OS.Linux</include>
+            <include>OS.Windows</include>
+            <include>Protocol</include>
+            <include>Protocol.LDAP</include>
+            <include>SCM.Git</include>
+            <include>WS</include>
+            <include>WS.Apache</include>
+            <include>WS.IIS</include>
+            <include>WS.Tomcat</include>
+            <exclude>Db</exclude>
+            <exclude>Db.CouchDB</exclude>
+            <exclude>Db.Firebird</exclude>
+            <exclude>Db.HypersonicSQL</exclude>
+            <exclude>Db.IBM DB2</exclude>
+            <exclude>Db.Microsoft Access</exclude>
+            <exclude>Db.Microsoft SQL Server</exclude>
+            <exclude>Db.MongoDB</exclude>
+            <exclude>Db.MySQL</exclude>
+            <exclude>Db.Oracle</exclude>
+            <exclude>Db.SAP MaxDB</exclude>
+            <exclude>Db.SQLite</exclude>
+            <exclude>Db.Sybase</exclude>
+            <exclude>Language</exclude>
+            <exclude>Language.ASP</exclude>
+            <exclude>Language.Ruby</exclude>
+            <exclude>Language.XML</exclude>
+            <exclude>OS</exclude>
+            <exclude>OS.MacOS</exclude>
+            <exclude>SCM</exclude>
+            <exclude>SCM.SVN</exclude>
+        </tech>
+        <urlparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </urlparser>
+        <postparser>
+            <class>org.zaproxy.zap.model.StandardParameterParser</class>
+            <config>{"kvps":"&amp;","kvs":"=","struct":[]}</config>
+        </postparser>
+        <authentication>
+            <type>0</type>
+            <strategy>EACH_RESP</strategy>
+            <pollurl/>
+            <polldata/>
+            <pollheaders/>
+            <pollfreq>60</pollfreq>
+            <pollunits>REQUESTS</pollunits>
+        </authentication>
+        <forceduser>-1</forceduser>
+        <session>
+            <type>3</type>
+            <headers>QXV0aG9yaXphdGlvbg==:QmVhcmVyIHslanNvbjpBdXRoZW50aWNhdGlvblJlc3VsdC5BY2Nlc3NUb2tlbiV9</headers>
+        </session>
+        <authorization>
+            <type>0</type>
+            <basic>
+                <header/>
+                <body/>
+                <logic>AND</logic>
+                <code>-1</code>
+            </basic>
+        </authorization>
+    </context>
+</configuration>

@@ -1,0 +1,88 @@
+  # Add steps that build, run tests, deploy, and more:
+  # https://aka.ms/yamls
+
+  variables:
+    system.debug: true
+
+  parameters:
+    - name: TARGET_URL
+      displayName: 'target url'
+      default: 'https://your-site.com/'
+      type: string
+    - name: LOGGED_OUT_INDICATOR_REGEX
+      displayName: 'logged out indicator regex'
+      default: 'Invalid Token'
+      type: string
+    - name: USERNAME
+      displayName: 'username'
+      default: ''
+      type: string
+    - name: SWAGGER_JSON_URL
+      displayName: 'swagger url'
+      default: ' '
+      type: string
+    - name: AWS_DEFAULT_REGION
+      displayName: 'aws region'
+      default: 'us-east-1'
+      type: string
+
+
+  trigger:
+    branches:
+      include:
+        - main
+
+  pool: 'Azure Pipelines'
+
+  stages:
+    - stage: zap
+      displayName: ZAP
+      dependsOn: []
+      jobs:
+        - job: zap_job
+          timeoutInMinutes: 0
+          displayName: ZAP Scan
+          continueOnError: true
+          steps:
+            - checkout: self
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  docker build \
+                  -t vapt-tool:latest \
+                  -f Dockerfile \
+                  .
+            - task: UniversalPackages@0
+              inputs:
+                command: 'download'
+                downloadDirectory: '$(Build.SourcesDirectory)/ZAPConfigs'
+                feedsToUse: 'internal'
+                vstsFeed: 'vstsFeed uuid'
+                vstsFeedPackage: 'vstsFeedPackage uuid'
+                vstsPackageVersion: '0.0.1'
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: |
+                  mkdir -p zap-reports
+                  docker run \
+                  -u 0 \
+                  -v "$(Build.SourcesDirectory)/ZAPConfigs:/tmp/ZAPConfigs/" \
+                  -v "$(Build.SourcesDirectory)/zap-reports:/reports/" \
+                  -i \
+                  -e TARGET_URL="${{ parameters.TARGET_URL }}" \
+                  -e LOGGED_OUT_INDICATOR_REGEX="${{ parameters.LOGGED_OUT_INDICATOR_REGEX }}" \
+                  -e USERNAME="${{ parameters.USERNAME }}" \
+                  -e PASSWORD="$(PASSWORD)" \
+                  -e SWAGGER_JSON_URL="${{ parameters.SWAGGER_JSON_URL }}" \
+                  -e AWS_DEFAULT_REGION="${{ parameters.AWS_DEFAULT_REGION }}" \
+                  vapt-tool:latest
+                  echo "zap test completed"
+                failOnStderr: false
+            - task: PublishPipelineArtifact@1
+              inputs:
+                targetPath: '$(Build.SourcesDirectory)/zap-reports'
+                artifact: 'Reports'
+                publishLocation: 'pipeline'
+              condition: true

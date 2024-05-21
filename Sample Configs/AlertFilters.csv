@@ -1,0 +1,8 @@
+AlertName,AlertID,URL
+Source Code Disclosure - File Inclusion,43
+Integer Overflow Error,30003
+PII Disclosure,10062
+Private IP Disclosure,2
+Server Side Template Injection,90035
+SQL Injection,40018
+Proxy Disclosure,40025

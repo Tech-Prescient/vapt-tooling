@@ -103,7 +103,7 @@ unexpected error.
    TXT file containing the list of URLs which needs to be added into ZAP, and are not available in the swagger json.
 
 
-### [Running the scan in ZAP Desktop App](docs/ZAP Desktop Guide.md)
+### [Running the scan in ZAP Desktop App](docs/ZAP-Desktop-Guide.md)
 
 
 ### FAQs
@@ -155,7 +155,7 @@ __`Q:` How to update the context file?__
    5. Go to `Session Management` section to make any required change
    6. Save and export the context
    7. Replace the exported `Default Context.context` file inside the `Configs` directory  
-   For pictorial guide check [this](docs/ZAP Desktop Guide.md)
+   For pictorial guide check [this](docs/ZAP-Desktop-Guide.md)
 
    `Note:` Make sure the following things are verified before committing any change 
    1. The context file name should be `Default Context.context` always
@@ -176,7 +176,7 @@ __`Q:` How to update the scan policy file?__
    4. Change the threshold and strength as required
    5. Save and export the policy
    6. Replace the exported `Default Policy.policy` file inside the `Configs` directory  
-   For pictorial guide check [this](docs/ZAP Desktop Guide.md)
+   For pictorial guide check [this](docs/ZAP-Desktop-Guide.md)
 
    `Note:` Make sure the following things are verified before committing any change 
    1. The policy file name should be `Default Policy.policy` always

@@ -21,8 +21,8 @@ docker pull techprescient/vapt:latest
 docker run \
     -p 8080:8080 \
     -u 0 \
-    -v <zap-configs-dir-full-path>:/tmp/ZAPConfigs/ \
-    -v <report-output-dir-full-path>:/reports/ \
+    -v <VAPT-ZAPConfigs-dir-full-path>:/tmp/ZAPConfigs/ \
+    -v <Zap-report-output-dir-full-path>:/reports/ \
     -i \
     -e TARGET_URL="https://your-site.com/" \
     -e LOGGED_OUT_INDICATOR_REGEX="logout-indicatior-for-your-application" \
@@ -40,10 +40,10 @@ For example, if you are using the sample cognito script (discussed later) as the
 `Note:` Do __NOT__ change the container directories in the run command.
 Only change the host machine directories and env variable values.
 
-### Preparing ZAP Configs directory
+### Preparing VAPT-ZAPConfigs directory
 
-In the previous docker run command you need to specify the `zap-configs-dir-path`. You must be wondering, what should
-be the contents of that directory. The directory should have the same structure like `Sample Configs` directory.
+In the previous docker run command you need to specify the `VAPT-Zap-output`. You must be wondering, what should
+be the contents of that directory. The directory should have the same structure like `VAPT-Zap-output` directory.
 It should contain the following files and folders in it -
 
 1. extra_modules/ - (required, if the `authentication.py` script has some external dependency)

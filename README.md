@@ -2,7 +2,7 @@ This repo is used for the pentesting using the [ZAP](https://www.zaproxy.org/)'s
 
 ### 1) Preparing VAPT-ZAPConfigs directory
 
-The directory should have the same structure like `VAPT-Zap-output` directory.
+The directory should have the same structure like `VAPT-ZapConfig` directory.
 It should contain the following files and folders in it -
 
 1. extra_modules/ - (required, if the `authentication.py` script has some external dependency)
@@ -99,7 +99,6 @@ unexpected error.
 
    `Note:` Do __NOT__ change the container directories in the run command.
    Only change the host machine directories and env variable values.
-
 
 ### 3) Monitoring if scan was started by confirming below logs:
 
@@ -330,7 +329,6 @@ WARN-NEW: Server Leaks Version Information via "Server" HTTP Response Header Fie
 
 `FAIL-NEW: 0     FAIL-INPROG: 0  WARN-NEW: 4     WARN-INPROG: 0  INFO: 0 IGNORE: 0      PASS: 14`  
 ```
-
 
 ### [Running the scan in ZAP Desktop App](docs/ZAP-Desktop-Guide.md)
 

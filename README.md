@@ -17,14 +17,17 @@ It should contain the following files and folders in it -
 Note: All the file and folder names inside configs dir should be exactly same as above. Mismatch in any name will cause some
 unexpected error.
 
-1. `extra_modules/`This is a directory containing any additional module required by jython engine to execute the script.
+1. `extra_modules/`
+   This is a directory containing any additional module required by jython engine to execute the script.
    For example, if using the `cognito` sample script, it needs some additional modules. Extract the `extra_modules.zip`
    file from `Sample Modules` and use it.
-2. `AlertFilters.csv`A csv file listing all the alerts which needs to be marked False Positive.`Note:`
+2. `AlertFilters.csv`
+   A csv file listing all the alerts which needs to be marked False Positive.`Note:`
 
    1. `AlertID` is a mandatory column in this csv file
    2. Do not change the csv headers
-3. `authentication.py`A script used to authenticate into the application.
+3. `authentication.py`
+   A script used to authenticate into the application.
 
    - This is a `jython` script compatible with ZAP authentication mechanism.So, don't get confused because of the `.py` extension.
      For reference, look in the Sample Scripts directory. You can modify the scripts or use them directly as is.
@@ -334,8 +337,8 @@ WARN-NEW: Server Leaks Version Information via "Server" HTTP Response Header Fie
 
 ### FAQs
 
-__`Q:` Where can I find the report after successful execution in local docker setup?__
-`A:` The local machine's `<report-output-dir-path>` specified in `docker run` command.
+__`Q:` Where can I find the report after successful execution in local docker setup?
+__`A:` The local machine's `<report-output-dir-path>` specified in `docker run` command.
 
 __`Q:` On successful execution, two ZAP reports are generated, one PDF and another HTML. Which one to refer to?__
 `A:` Both the reports are same.

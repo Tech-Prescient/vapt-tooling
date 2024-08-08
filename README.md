@@ -343,125 +343,131 @@ WARN-NEW: Server Leaks Version Information via "Server" HTTP Response Header Fie
 ### [Running the scan in ZAP Desktop App](docs/ZAP-Desktop-Guide.md)
 
 ### FAQs
-
-`Q:` Where can I find the report after successful execution in local docker setup?
+__`Q:` Where can I find the report after successful execution in local docker setup?__  
 `A:` The local machine's `<report-output-dir-path>` specified in `docker run` command.
 
-`Q:` On successful execution, two ZAP reports are generated, one PDF and another HTML. Which one to refer to?__
-`A:` Both the reports are same.
 
-`Q:` If both the reports are same, then why are we generating the same reports in two different formats?__
+__`Q:` On successful execution, two ZAP reports are generated, one PDF and another HTML. Which one to refer to?__  
+`A:` Both the reports are same.  
+
+
+__`Q:` If both the reports are same, then why are we generating the same reports in two different formats?__  
 `A:` Sometimes the PDF report generation fails when it contains some invalid unicode characters in it, [see this](https://github.com/zaproxy/zaproxy/issues/8330).
-To be on the safer side, creating a HTML report too.
+To be on the safer side, creating a HTML report too. 
 Otherwise, it may happen that after waiting for a long time we end up having nothing after the scan completes.
 
-`Q:` I don't want to include some alerts in the report from next scan onwards. Where and what change should I make?__
-`A:` To exclude some alerts from the reports we need to mark those False Positive.
-   To do so, we need to add the `AlertID` in `AlertFilters.csv`.
 
-   For example,
-    - If all the `Source Code Disclosure - File Inclusion` alerts needs to be marked False Positive,
-   then add a row in the file mentioning the `AlertID` as `43`
-   CSV Row sample - `Source Code Disclosure - File Inclusion,43,`
+__`Q:` I don't want to include some alerts in the report from next scan onwards. Where and what change should I make?__  
+`A:` To exclude some alerts from the reports we need to mark those False Positive. 
+   To do so, we need to add the `AlertID` in `AlertFilters.csv`.  
+
+   For example,  
+    - If all the `Source Code Disclosure - File Inclusion` alerts needs to be marked False Positive, 
+   then add a row in the file mentioning the `AlertID` as `43`  
+   CSV Row sample - `Source Code Disclosure - File Inclusion,43,`  
     - If only a specific `Source Code Disclosure - File Inclusion` alert needs to be marked False Positive,
-   then add the URL column also, mentioning only the endpoint without Base URL.
+   then add the URL column also, mentioning only the endpoint without Base URL.  
    CSV Row sample - `Source Code Disclosure - File Inclusion,43,/users`
 
-`Q:` How / Where to find the `AlertID` of a specific alert to add it in `AlertFilters.csv` file?
-`A:` Any of the following can be used to get the AlertID -
 
-- The `Plugin Id` mentioned in the ZAP report for that specific alert
-- Search for the alert name here https://www.zaproxy.org/docs/alerts/ and take the ID
+__`Q:` How / Where to find the `AlertID` of a specific alert to add it in `AlertFilters.csv` file?__  
+`A:` Any of the following can be used to get the AlertID -  
+   - The `Plugin Id` mentioned in the ZAP report for that specific alert  
+   - Search for the alert name here https://www.zaproxy.org/docs/alerts/ and take the ID
 
-`Q:` I want to skip some attacks from the next scan onwards. What to do?
-`A:` Attacks can be skipped in two different ways -
 
-- By unchecking the specific technology in the `context`'s technology section
-- By setting the `Threshold` to `OFF` in the `policy`
+__`Q:` I want to skip some attacks from the next scan onwards. What to do?__  
+`A:` Attacks can be skipped in two different ways -  
+   - By unchecking the specific technology in the `context`'s technology section
+   - By setting the `Threshold` to `OFF` in the `policy`
 
-`Q:` How to update the context file?
-`A:` Steps to update the context -
 
-1. Open ZAP Desktop App
-2. Make sure all the available addons in the marketplace are installed and updated
-3. Import the `Default Context.context` file which is present in the `Configs` directory
-4. After successful import, go to `Technology` section and make any required change
-5. Go to `Session Management` section to make any required change
-6. Save and export the context
-7. Replace the exported `Default Context.context` file inside the `Configs` directory
+__`Q:` How to update the context file?__  
+`A:` Steps to update the context -  
+   1. Open ZAP Desktop App
+   2. Make sure all the available addons in the marketplace are installed and updated
+   3. Import the `Default Context.context` file which is present in the `Configs` directory
+   4. After successful import, go to `Technology` section and make any required change
+   5. Go to `Session Management` section to make any required change
+   6. Save and export the context
+   7. Replace the exported `Default Context.context` file inside the `Configs` directory  
    For pictorial guide check [this](docs/ZAP-Desktop-Guide.md)
 
-   `Note:` Make sure the following things are verified before committing any change
-8. The context file name should be `Default Context.context` always
-9. The name tag in the context file should be `<name>Default Context</name>` always
+   `Note:` Make sure the following things are verified before committing any change 
+   1. The context file name should be `Default Context.context` always
+   2. The name tag in the context file should be `<name>Default Context</name>` always  
 
-`Q:` While preparing the context file for docker setup, do I need to configure everything using ZAP Desktop application?__
-`A:` No, you don't need to configure everything in the context using ZAP Desktop application. Only the `Technology` and
-`Session Management` sections needs to be configured. Rest of the things like included urls regex, authentication mechanism,
-logged out indicator, user details etc. will be configured by the docker setup automatically before executing the scan.
 
-`Q:` How to update the scan policy file?
-`A:` Steps to update the scan policy -
+__`Q:` While preparing the context file for docker setup, do I need to configure everything using ZAP Desktop application?__  
+`A:` No, you don't need to configure everything in the context using ZAP Desktop application. Only the `Technology` and 
+`Session Management` sections needs to be configured. Rest of the things like included urls regex, authentication mechanism, 
+logged out indicator, user details etc. will be configured by the docker setup automatically before executing the scan.  
 
-1. Open ZAP Desktop App
-2. Make sure all the available addons in the marketplace are installed and updated
-3. Import the `Default Policy.policy` file which is present in the `Configs` directory
-4. Change the threshold and strength as required
-5. Save and export the policy
-6. Replace the exported `Default Policy.policy` file inside the `Configs` directory
+
+__`Q:` How to update the scan policy file?__  
+`A:` Steps to update the scan policy -  
+   1. Open ZAP Desktop App
+   2. Make sure all the available addons in the marketplace are installed and updated
+   3. Import the `Default Policy.policy` file which is present in the `Configs` directory
+   4. Change the threshold and strength as required
+   5. Save and export the policy
+   6. Replace the exported `Default Policy.policy` file inside the `Configs` directory  
    For pictorial guide check [this](docs/ZAP-Desktop-Guide.md)
 
-   `Note:` Make sure the following things are verified before committing any change
-7. The policy file name should be `Default Policy.policy` always
-8. The policy tag in the policy file should be `<policy>Default Policy</policy>` always
+   `Note:` Make sure the following things are verified before committing any change 
+   1. The policy file name should be `Default Policy.policy` always
+   2. The policy tag in the policy file should be `<policy>Default Policy</policy>` always  
 
-`Q:` How long can it take to complete the scan?
-`A:` Scan runtime depends mostly upon the following things -
 
-1. Total number of endpoints we have
-2. The list of technologies checked/selected in `context`'s technology section
-3. Number of attacks enabled and their corresponding threshold and strength mentioned in scan policy
-4. System configuration (on which docker container is running) and network speed can also be a factor
-   So it's not possible to predict the execution time.
-   The maximum I have seen is around 3 days, it may take even more time also. So be patient 😅.
+__`Q:` How long can it take to complete the scan?__  
+`A:` Scan runtime depends mostly upon the following things -  
+   1. Total number of endpoints we have
+   2. The list of technologies checked/selected in `context`'s technology section
+   3. Number of attacks enabled and their corresponding threshold and strength mentioned in scan policy  
+   4. System configuration (on which docker container is running) and network speed can also be a factor  
+   So it's not possible to predict the execution time. 
+   The maximum I have seen is around 3 days, it may take even more time also. So be patient :sweat_smile:.
 
-`Q:` I want to quickly test if the docker is running properly end to end and generating some report. How to test it?__
-`A:` Add only 2 or 3 endpoints in the `urls.txt` file.
-   And while executing the `docker run` command specify the `SWAGGER_JSON_URL=""`.
-   Having only 2 or 3 endpoints will conclude the scan within 10 - 15 minutes
+
+__`Q:` I want to quickly test if the docker is running properly end to end and generating some report. How to test it?__  
+`A:` Add only 2 or 3 endpoints in the `urls.txt` file. 
+   And while executing the `docker run` command specify the `SWAGGER_JSON_URL=""`.  
+   Having only 2 or 3 endpoints will conclude the scan within 10 - 15 minutes 
    (time may change depending on the context's technologies and scan policy).
 
-`Q:` What is Logged Out Indicator Regex?__
-`A:` A regular expression used by ZAP to determine whether it is in logged out state or not.
+
+__`Q:` What is Logged Out Indicator Regex?__  
+`A:` A regular expression used by ZAP to determine whether it is in logged out state or not. 
    If ZAP finds this regex in any response then it will re-execute the login script to authenticate.
 
-`Q:` ZAP started reporting a lot of false positive alerts which were not present in the previous report.
-   What is the reason and fix for this?
-`A:` ZAP can start reporting false positive alerts because of the following reasons -
 
-1. URLs file or the swagger has some new endpoints and ZAP started attacking those
-2. Context, Scan Policy and AlertFilters might have been altered
-3. Some new addons got published in the ZAP marketplace and those attacks are not configured properly in the scan policy
-
-   Fix:
-4. If you want to skip the attack, then update the context's technology and scan policy accordingly
-5. If you want the attack to happen, but want to remove those only from the report,
+__`Q:` ZAP started reporting a lot of false positive alerts which were not present in the previous report. 
+   What is the reason and fix for this?__  
+`A:` ZAP can start reporting false positive alerts because of the following reasons -  
+   1. URLs file or the swagger has some new endpoints and ZAP started attacking those
+   2. Context, Scan Policy and AlertFilters might have been altered
+   3. Some new addons got published in the ZAP marketplace and those attacks are not configured properly in the scan policy  
+   
+   Fix:  
+   1. If you want to skip the attack, then update the context's technology and scan policy accordingly
+   2. If you want the attack to happen, but want to remove those only from the report, 
    then update `AlertFilters.csv` file accordingly
 
-`Q:` How to modify the authentication script?__
-`A:` The core logic of the authentication should be inside the `authenticate` function in `authentication.py` file.
-Do not change any function signature, only change the function body.
+
+__`Q:` How to modify the authentication script?__  
+`A:` The core logic of the authentication should be inside the `authenticate` function in `authentication.py` file. 
+Do not change any function signature, only change the function body.  
 It is advised that, use the script in ZAP Desktop App before using it in docker setup, as it is easier to debug and fix.
 
-`Q:` I don't want to prepare the authentication script. Is it possible to scan my application?__
-`A:` Yes, it is possible to scan the application without preparing the authentication script.
-The workaround is to use the `direct_token.py` as the authentication script, present in the `Sample Scripts` directory.
-Modify/Add the header(s) and its actual value(s) in `direct_token.py` as per your application's requirement.
-And use it as the authentication script in your configs directory.
-Remove all the variables which are related to authentication process from the docker run command,
-especially the value of `USERNAME` should be empty.
-So, the docker run command becomes -
 
+__`Q:` I don't want to prepare the authentication script. Is it possible to scan my application?__  
+`A:` Yes, it is possible to scan the application without preparing the authentication script. 
+The workaround is to use the `direct_token.py` as the authentication script, present in the `Sample Scripts` directory. 
+Modify/Add the header(s) and its actual value(s) in `direct_token.py` as per your application's requirement. 
+And use it as the authentication script in your configs directory. 
+Remove all the variables which are related to authentication process from the docker run command, 
+especially the value of `USERNAME` should be empty. 
+So, the docker run command becomes -
 ```commandline
 docker run \
     -p 8080:8080 \
@@ -474,6 +480,6 @@ docker run \
     vapt-tool:latest
 ```
 
-`Note:` ZAP will only be able to make authenticated request till the token is valid. Once the token expires, all the successive
-requests will be unauthenticated. It is __NOT__ possible to update the token while the scan is in progress. And this may impact
+`Note:` ZAP will only be able to make authenticated request till the token is valid. Once the token expires, all the successive 
+requests will be unauthenticated. It is __NOT__ possible to update the token while the scan is in progress. And this may impact 
 on the report generated after scan completion.

@@ -46,9 +46,8 @@ unexpected error.
      ![1722930563524](docs/screenshots/1722930563524.png)
    - Copy this file content into `Default Context.context`
 
-6. Generate  `Default Policy.policy`A ZAP scan policy which contains the list of attacks to perform during the scan
-   and their corresponding threshold and strength.
-
+6. Generate  `Default Policy.policy`
+   A ZAP scan policy which contains the list of attacks to perform during the scan and their corresponding threshold and strength.
    * Lets generate the policy file using ZAP. Click on `Scan policy manager`  and update according to requirement.
 
      ![1722930840182](docs/screenshots/1722930840182.png)
@@ -345,18 +344,18 @@ WARN-NEW: Server Leaks Version Information via "Server" HTTP Response Header Fie
 
 ### FAQs
 
-__`Q:` Where can I find the report after successful execution in local docker setup?
-__`A:` The local machine's `<report-output-dir-path>` specified in `docker run` command.
+`Q:` Where can I find the report after successful execution in local docker setup?
+`A:` The local machine's `<report-output-dir-path>` specified in `docker run` command.
 
-__`Q:` On successful execution, two ZAP reports are generated, one PDF and another HTML. Which one to refer to?__
+`Q:` On successful execution, two ZAP reports are generated, one PDF and another HTML. Which one to refer to?__
 `A:` Both the reports are same.
 
-__`Q:` If both the reports are same, then why are we generating the same reports in two different formats?__
+`Q:` If both the reports are same, then why are we generating the same reports in two different formats?__
 `A:` Sometimes the PDF report generation fails when it contains some invalid unicode characters in it, [see this](https://github.com/zaproxy/zaproxy/issues/8330).
 To be on the safer side, creating a HTML report too.
 Otherwise, it may happen that after waiting for a long time we end up having nothing after the scan completes.
 
-__`Q:` I don't want to include some alerts in the report from next scan onwards. Where and what change should I make?__
+`Q:` I don't want to include some alerts in the report from next scan onwards. Where and what change should I make?__
 `A:` To exclude some alerts from the reports we need to mark those False Positive.
    To do so, we need to add the `AlertID` in `AlertFilters.csv`.
 
@@ -368,17 +367,20 @@ __`Q:` I don't want to include some alerts in the report from next scan onwards.
    then add the URL column also, mentioning only the endpoint without Base URL.
    CSV Row sample - `Source Code Disclosure - File Inclusion,43,/users`
 
-__`Q:` How / Where to find the `AlertID` of a specific alert to add it in `AlertFilters.csv` file?__`A:` Any of the following can be used to get the AlertID -
+`Q:` How / Where to find the `AlertID` of a specific alert to add it in `AlertFilters.csv` file?
+`A:` Any of the following can be used to get the AlertID -
 
 - The `Plugin Id` mentioned in the ZAP report for that specific alert
 - Search for the alert name here https://www.zaproxy.org/docs/alerts/ and take the ID
 
-__`Q:` I want to skip some attacks from the next scan onwards. What to do?__`A:` Attacks can be skipped in two different ways -
+`Q:` I want to skip some attacks from the next scan onwards. What to do?
+`A:` Attacks can be skipped in two different ways -
 
 - By unchecking the specific technology in the `context`'s technology section
 - By setting the `Threshold` to `OFF` in the `policy`
 
-__`Q:` How to update the context file?__`A:` Steps to update the context -
+`Q:` How to update the context file?
+`A:` Steps to update the context -
 
 1. Open ZAP Desktop App
 2. Make sure all the available addons in the marketplace are installed and updated
@@ -393,12 +395,13 @@ __`Q:` How to update the context file?__`A:` Steps to update the context -
 8. The context file name should be `Default Context.context` always
 9. The name tag in the context file should be `<name>Default Context</name>` always
 
-__`Q:` While preparing the context file for docker setup, do I need to configure everything using ZAP Desktop application?__
+`Q:` While preparing the context file for docker setup, do I need to configure everything using ZAP Desktop application?__
 `A:` No, you don't need to configure everything in the context using ZAP Desktop application. Only the `Technology` and
 `Session Management` sections needs to be configured. Rest of the things like included urls regex, authentication mechanism,
 logged out indicator, user details etc. will be configured by the docker setup automatically before executing the scan.
 
-__`Q:` How to update the scan policy file?__`A:` Steps to update the scan policy -
+`Q:` How to update the scan policy file?
+`A:` Steps to update the scan policy -
 
 1. Open ZAP Desktop App
 2. Make sure all the available addons in the marketplace are installed and updated
@@ -412,7 +415,8 @@ __`Q:` How to update the scan policy file?__`A:` Steps to update the scan policy
 7. The policy file name should be `Default Policy.policy` always
 8. The policy tag in the policy file should be `<policy>Default Policy</policy>` always
 
-__`Q:` How long can it take to complete the scan?__`A:` Scan runtime depends mostly upon the following things -
+`Q:` How long can it take to complete the scan?
+`A:` Scan runtime depends mostly upon the following things -
 
 1. Total number of endpoints we have
 2. The list of technologies checked/selected in `context`'s technology section
@@ -421,18 +425,19 @@ __`Q:` How long can it take to complete the scan?__`A:` Scan runtime depends mos
    So it's not possible to predict the execution time.
    The maximum I have seen is around 3 days, it may take even more time also. So be patient 😅.
 
-__`Q:` I want to quickly test if the docker is running properly end to end and generating some report. How to test it?__
+`Q:` I want to quickly test if the docker is running properly end to end and generating some report. How to test it?__
 `A:` Add only 2 or 3 endpoints in the `urls.txt` file.
    And while executing the `docker run` command specify the `SWAGGER_JSON_URL=""`.
    Having only 2 or 3 endpoints will conclude the scan within 10 - 15 minutes
    (time may change depending on the context's technologies and scan policy).
 
-__`Q:` What is Logged Out Indicator Regex?__
+`Q:` What is Logged Out Indicator Regex?__
 `A:` A regular expression used by ZAP to determine whether it is in logged out state or not.
    If ZAP finds this regex in any response then it will re-execute the login script to authenticate.
 
-__`Q:` ZAP started reporting a lot of false positive alerts which were not present in the previous report.
-   What is the reason and fix for this?__`A:` ZAP can start reporting false positive alerts because of the following reasons -
+`Q:` ZAP started reporting a lot of false positive alerts which were not present in the previous report.
+   What is the reason and fix for this?
+`A:` ZAP can start reporting false positive alerts because of the following reasons -
 
 1. URLs file or the swagger has some new endpoints and ZAP started attacking those
 2. Context, Scan Policy and AlertFilters might have been altered
@@ -443,12 +448,12 @@ __`Q:` ZAP started reporting a lot of false positive alerts which were not prese
 5. If you want the attack to happen, but want to remove those only from the report,
    then update `AlertFilters.csv` file accordingly
 
-__`Q:` How to modify the authentication script?__
+`Q:` How to modify the authentication script?__
 `A:` The core logic of the authentication should be inside the `authenticate` function in `authentication.py` file.
 Do not change any function signature, only change the function body.
 It is advised that, use the script in ZAP Desktop App before using it in docker setup, as it is easier to debug and fix.
 
-__`Q:` I don't want to prepare the authentication script. Is it possible to scan my application?__
+`Q:` I don't want to prepare the authentication script. Is it possible to scan my application?__
 `A:` Yes, it is possible to scan the application without preparing the authentication script.
 The workaround is to use the `direct_token.py` as the authentication script, present in the `Sample Scripts` directory.
 Modify/Add the header(s) and its actual value(s) in `direct_token.py` as per your application's requirement.

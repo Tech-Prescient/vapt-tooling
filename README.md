@@ -18,6 +18,7 @@ Note: All the file and folder names inside configs dir should be exactly same as
 unexpected error.
 
 1. `extra_modules/`
+
    This is a directory containing any additional module required by jython engine to execute the script.
    For example, if using the `cognito` sample script, it needs some additional modules. Extract the `extra_modules.zip`
    file from `Sample Modules` and use it.

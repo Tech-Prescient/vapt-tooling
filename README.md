@@ -40,19 +40,19 @@ unexpected error.
 
 5. Generate the  `Default Context.context` A ZAP context file containing the information about the
    - Open Zap and update the "Default Context" by choosing relevent technologies and other configuration:
-     ![1722930377150](docs/screenshots/1722930377150.png)
+     ![modify-context](docs/screenshots/modify-context.png)
    - Rest of the required details will be added automatically during runtime
    - Export the Context file using export option.
-     ![1722930563524](docs/screenshots/1722930563524.png)
+     ![export-default-context](docs/screenshots/export-default-context.png)
    - Copy this file content into `Default Context.context`
 
 6. Generate  `Default Policy.policy`
    A ZAP scan policy which contains the list of attacks to perform during the scan and their corresponding threshold and strength.
    * Lets generate the policy file using ZAP. Click on `Scan policy manager`  and update according to requirement.
 
-     ![1722930840182](docs/screenshots/1722930840182.png)
+     ![deafult-policy](docs/screenshots/deafult-policy.png)
    * Export the policy by selecting `Default policy.policy` and `Export `
-     ![1722931354786](docs/screenshots/1722931354786.png)
+     ![policy-export](docs/screenshots/policy-export.png)
 
 7. `script_params.json`
 

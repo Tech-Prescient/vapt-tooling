@@ -23,26 +23,29 @@ unexpected error.
    For example, if using the `cognito` sample script, it needs some additional modules. Extract the `extra_modules.zip`
    file from `Sample Modules` and use it.
 2. `AlertFilters.csv`
-   A csv file listing all the alerts which needs to be marked False Positive.`Note:`
 
+   A csv file listing all the alerts which needs to be marked False Positive.`Note:`
    1. `AlertID` is a mandatory column in this csv file
    2. Do not change the csv headers
-3. `authentication.py`
-   A script used to authenticate into the application.
 
+3. `authentication.py`
+
+   A script used to authenticate into the application.
    - This is a `jython` script compatible with ZAP authentication mechanism.So, don't get confused because of the `.py` extension.
      For reference, look in the Sample Scripts directory. You can modify the scripts or use them directly as is.
    - If your application uses cognito then you can use/modify the `cognito.py` file.
    - If you want to add direct token than copy content of direct_token.py file into `authentication.py`  and update your token in `sendingRequest`  method.
-4. Download the [ZAP](https://www.zaproxy.org/download/) application.(for Mac, you need to "Enable Anywhere installation" using the command `sudo spctl --master-disable` )
-5. Generate the  `Default Context.context` A ZAP context file containing the information about the
 
+4. Download the [ZAP](https://www.zaproxy.org/download/) application.(for Mac, you need to "Enable Anywhere installation" using the command `sudo spctl --master-disable` )
+
+5. Generate the  `Default Context.context` A ZAP context file containing the information about the
    - Open Zap and update the "Default Context" by choosing relevent technologies and other configuration:
      ![1722930377150](docs/screenshots/1722930377150.png)
    - Rest of the required details will be added automatically during runtime
    - Export the Context file using export option.
      ![1722930563524](docs/screenshots/1722930563524.png)
    - Copy this file content into `Default Context.context`
+
 6. Generate  `Default Policy.policy`A ZAP scan policy which contains the list of attacks to perform during the scan
    and their corresponding threshold and strength.
 
@@ -51,14 +54,18 @@ unexpected error.
      ![1722930840182](docs/screenshots/1722930840182.png)
    * Export the policy by selecting `Default policy.policy` and `Export `
      ![1722931354786](docs/screenshots/1722931354786.png)
+
 7. `script_params.json`
 
    - If you want to get authneticationm token from AWS-Congnito than update this file A json file containing all the parameters defined in the authentication script (except username and password), with their values.
    - NOTE: If you are using other authentication method or direct-token than use `direct_token.py`  than leave it as empty json file.
+
 8. `swagger_schema.json`
 
    - In case if the swagger is not hosted, then the json file can be used directly.
+
 9. `urls.txt`
+
    TXT file containing the list of URLs which needs to be added into ZAP, and are not available in the swagger json.
 
    ### 2) Building the docker image

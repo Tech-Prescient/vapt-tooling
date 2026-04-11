@@ -240,6 +240,13 @@ docker run \
     -v <report-output-dir-path>:/reports/ \
     -i \
     -e TARGET_URL="https://your-site.com/" \
+
+
+
+VAPT
+https://github.com/Tech-Prescient/vapt-tooling/
+https://medium.com/@rohitsahoo25/10e9b5bed860
+
     -e SWAGGER_JSON_URL="https://your-site.com/api-docs" \
     vapt-tool:latest
 ```
